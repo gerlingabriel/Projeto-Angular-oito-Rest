@@ -10,14 +10,4 @@ import { LoginServiceService } from './service/login-service.service';
 export class AppComponent {
   title = 'Projeto-Angular-oito-Rest';
 
-  usuario = {login: '', senha:''};
-
-  constructor(private loginService: LoginServiceService){
-
-  }
-
-  public login(){
-    this.loginService.login(this.usuario);
-  }
-
 }
