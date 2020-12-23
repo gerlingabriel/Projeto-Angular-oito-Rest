@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LoginServiceService } from './service/login-service.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Projeto-Angular-oito-Rest';
+
+  usuario = {login: '', senha:''};
+
+  constructor(private loginService: LoginServiceService){
+
+  }
+
+  public login(){
+    this.loginService.login(this.usuario);
+  }
+
 }
