@@ -4,8 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+/** Ativar o AJax */
 import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './home/home.component'; /** Ativar o AJax */
+import { HomeComponent } from './home/home.component'; 
 import { RouterModule, Routes } from '@angular/router';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { LoginComponent } from './login/login.component';
