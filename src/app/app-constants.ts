@@ -1,9 +1,9 @@
 export class AppConstants {
 
   public static get baseServidor(): string {
-    return "/api";
+    return "http://localhost:8080/";
     /** Esse "/api" serve para burlar o erro de Cors que não deixa comunicar com back end depois que criar o 
-     * metodo HEADER-INTERCEPTOR.SERVICE
+     * metodo HEADER-INTERCEPTOR.SERVICE ("/api")
      */
   }
 
