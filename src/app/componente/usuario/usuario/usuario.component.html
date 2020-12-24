@@ -1,0 +1,16 @@
+<p>usuario works!</p>
+
+<table class="table">
+    <thead class="thread-dark">
+        <th scope="col">ID</th>
+        <th scope="col">Login</th>
+        <th scope="col">Nome</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let teste of students">
+            <td>{{teste.id}}</td>
+            <td>{{teste.login}}</td>
+            <td>{{teste.nome}}</td>
+        </tr>
+    </tbody>
+</table>
