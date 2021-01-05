@@ -1,0 +1,43 @@
+<p>Tela de Usuário</p>
+
+<div style="width: 90%; align-items: center" class="container">
+  <form #formulario="ngForm">
+    <fieldset>
+      <legend>Cadastro de Usuário</legend>
+      
+      <div class="form-row">
+        <div class="form-group col-4">
+          <input type="text" [(ngModel)]="usuario.id" class="form-control" name="id" id="nome" readonly />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="nome">Nome:</label>
+          <span style="color: red;font-size: 20px;" *ngIf="nomeValidate.invalid"> *</span>
+          <input type="text" [(ngModel)]="usuario.nome" #nomeValidate="ngModel" class="form-control" name="nome" id="nome" placeholder="Nome" required />
+        </div>
+        <div class="form-group col">
+          <label for="login">Login:</label>
+          <span style="color: red;font-size: 20px;" *ngIf="loginValidate.invalid"> *</span>
+          <input type="text" [(ngModel)]="usuario.login" #loginValidate="ngModel" class="form-control" name="login" id="login" placeholder="Login" required />
+        </div>
+        <div class="form-group col">
+          <label for="senha">Senha:</label>
+          <span style="color: red;font-size: 20px;" *ngIf="senhaValidate.invalid"> *</span>
+          <input type="password" [(ngModel)]="usuario.senha" #senhaValidate="ngModel" class="form-control" name="senha" id="senha" placeholder="Senha" required />
+        </div>
+      </div>
+      <!--Fim da linha-->
+
+      <div class="form-row">
+        <div style="width: 90%; align-items: center" class="col-sm-12 container">
+          <button type="button" class="btn btn-warning" [routerLink]="[ '/userList' ]" routerLinkActive="router-link-active" style="width: 100px;">Voltar</button>
+          <button type="button" class="btn btn-primary" (click)="novo()" style="margin-left: 10px;width: 100px">Novo</button>
+          <button type="button" class="btn btn-primary" [disabled]="formulario.invalid" (click)="salvar()" style="margin-left: 10px;width: 100px">Salvar</button>
+        </div>
+        <!--Fim da linha-->
+      </div>
+    </fieldset>
+  </form>
+</div>

@@ -9,7 +9,7 @@
   
     <div class="form-group">
       <label for="senha">Senha:</label>
-      <input type="text" class="form-control" [(ngModel)]="usuario.senha" #senha="ngModel" name="senha" id="senha"  required />
+      <input type="password" class="form-control" [(ngModel)]="usuario.senha" #senha="ngModel" name="senha" id="senha"  required />
     </div>
   
     <button type="button" [disabled]="email.invalid || senha.invalid" class="btn btn-primary" (click)="login()" >Acessar</button>

@@ -1,16 +1,80 @@
-<p>usuario works!</p>
+<br />
+<div class="container">
+    <form class="row g-3">
+        <div class="col-auto">
+            <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="nome"
+                placeholder="Pesquisa por nome" />
+        </div>
+        <div class="col-auto">
+            <button type="button" class="btn btn-primary mb-3" (click)="conultarUsuario()" style="width: 100px">
+                Buscar
+            </button>
+        </div>
+        <div class="col-auto">
+            <button type="button" [routerLink]="[ '/usuarioAdd' ]" class="btn btn-success" style="width: 150px">
+                Novo Usuário
+            </button>
+        </div>
+    </form>
+</div>
+<br />
 
-<table class="table">
-    <thead class="thread-dark">
-        <th scope="col">ID</th>
-        <th scope="col">Login</th>
-        <th scope="col">Nome</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let teste of students">
-            <td>{{teste.id}}</td>
-            <td>{{teste.login}}</td>
-            <td>{{teste.nome}}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="container">
+    <table class="table table-bordered table-hover table-sm" style="width: 90%">
+        <thead class="thead-dark">
+            <th scope="col">ID</th>
+            <th scope="col">Login</th>
+            <th scope="col">Nome</th>
+            <th scope="col" style="width: 10%; text-align: center; vertical-align: middle">
+                Deletar
+            </th>
+            <th scope="col" style="width: 10%; text-align: center; vertical-align: middle">
+                Editar
+            </th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let teste of students">
+                <td>{{ teste.id }}</td>
+                <td>{{ teste.login }}</td>
+                <td>{{ teste.nome }}</td>
+                <!--<td><button  class="btn btn-primary">Deletar</button></td> -->
+                <!-- Botão para acionar modal -->
+                <td>
+                    <button type="button" class="btn btn-primary" (click)="deleteUsuario(teste.id)" data-toggle="modal"
+                        data-target="#modalExemplo" style="width: 100%; text-align: center; vertical-align: middle">
+                        Deletar
+                    </button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-warning" [routerLink]="[ '/usuarioAdd', teste.id ]"
+                        style="width: 100%; text-align: center; vertical-align: middle">
+                        Editar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+            <div class="modal-body">Confirmar o delete?</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Não
+                </button>
+                <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="onConfirmando()">
+                    <!-- data-dismiss="modal" faz que apois clicar feche o modal -->
+                    Sim
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
