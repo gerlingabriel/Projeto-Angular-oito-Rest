@@ -1,5 +1,7 @@
 import { Injectable, NgModule } from "@angular/core";
-import { HttpEvent, HttpHandler, HttpRequest, HttpInterceptor, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpEvent, HttpHandler, HttpRequest, HttpInterceptor, HTTP_INTERCEPTORS, HttpErrorResponse, HttpResponse } from "@angular/common/http";
+import { throwError } from "rxjs";
+import { catchError, tap } from "rxjs/operators";
 
 @Injectable()
 
@@ -16,13 +18,33 @@ export class HeaderInterceptorService implements HttpInterceptor {
         headers: req.headers.set("Authorization", token)
       });
 
-      return next.handle(tokenRequest);
+      return next.handle(tokenRequest).pipe(
+        tap((event: HttpEvent<any>) => {
+          if(event instanceof HttpResponse && (event.status === 200 || event.status === 201)){
+            console.log('Adicionado com suscesso!'); //**Toda operação de sucesso irá chamar essa operação */
+          }
+        })
+        ,catchError(this.processarErros));
     } else {
-      return next.handle(req);
+      return next.handle(req).pipe(catchError(this.processarErros));
     }
   }
 
   constructor() {}
+
+  processarErros(error: HttpErrorResponse){
+
+    let errorMessenger = "Erro desconhecido";
+
+    if(error.error instanceof  ErrorEvent){
+      console.error(error.error);
+      errorMessenger = "Error " + error.error.error;
+    }else {
+      errorMessenger = "Código " + error.error.code + "\nMensagem:" +  error.error.error;
+    }
+    window.alert(errorMessenger)
+    return throwError(errorMessenger);
+  }
 }
 
 @NgModule({

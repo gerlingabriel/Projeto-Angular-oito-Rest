@@ -14,13 +14,25 @@ export class UsuarioService {
   getUsuarios(): Observable<any> {
     return this.http.get<any>(AppConstants.baseURL);
   }
+  getUsuariosPage(pagina): Observable<any> {
+    return this.http.get<any>(AppConstants.baseURL + "page/" + pagina);
+  }
 
   deletar(id: Number): Observable<any> {
     return this.http.delete<any>(AppConstants.baseURL + id);
   }
 
-  consultarUsuario(nome: String): Observable<any> {
-    return this.http.get(AppConstants.baseURL + "usuarioPorNome/" + nome);
+   //http://localhost:8080/cursospringrestapi/usuario/usuarioPorNome/alex
+  consultarUser(nome: String): Observable<any> {
+    return this.http.get<any>(AppConstants.baseURL + "usuarioPorNome/" + nome);
+
+  }
+  consultarUserPoPage(nome: String, page : Number): Observable<any> {
+    return this.http.get<any>(AppConstants.baseURL + "usuarioPorNome/" + nome + "/page/" + page);
+  }
+
+  getStudentListPage(pagina): Observable<any> {
+    return this.http.get<any>(AppConstants.baseURL + 'page/' + pagina);
   }
 
   getUsuario(id): Observable<any> {
@@ -33,5 +45,20 @@ export class UsuarioService {
 
   updateUsuario(usuario): Observable<any>{
     return this.http.put<any>(AppConstants.baseURL, usuario);
+  }
+
+  removerTelefone(id): Observable<any>{
+    return this.http.delete<any>(AppConstants.baseURL + "removerTelefone/" + id, {responseType: 'text' as 'json' });
+  }
+
+  userAuthentication(){
+    if(localStorage.getItem('token') != null && localStorage.getItem('token').toString != null){
+      /**Verificar se está logado
+       * Só tem token quemestá logado
+      */
+     return true;
+    }else {
+      return false;
+    }
   }
 }

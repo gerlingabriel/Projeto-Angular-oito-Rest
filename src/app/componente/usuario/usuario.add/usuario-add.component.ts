@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 /** ActivatedRoute consegue pegar dados de uma página para outra */
 import { ActivatedRoute } from '@angular/router';
+import { Telefone } from 'src/app/model/telefone';
 import { UsuarioAngular } from 'src/app/model/usuario-angular';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
@@ -13,6 +14,7 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 export class UsuarioAddComponent implements OnInit {
 
   usuario = new UsuarioAngular();
+  telefone =new Telefone();
 
   constructor(private activatedRoute: ActivatedRoute, private usuarioAngularService: UsuarioService) { }
 
@@ -50,6 +52,33 @@ export class UsuarioAddComponent implements OnInit {
 
   novo(){
     this.usuario = new UsuarioAngular();
+    this.telefone = new Telefone();
+  }
+
+  deleletarTel(id,i){
+
+    if(id == null){
+      this.usuario.telefones.splice(i, 1);
+      return;
+    }
+
+    if(id != null && confirm("Deseja deletar telefone?")){
+      this.usuarioAngularService.removerTelefone(id).subscribe(data => {
+
+        this.usuario.telefones.splice(i, 1);
+        console.info("Telefone removido = " + data)
+      });
+    }
+
+  }
+
+  addfone(){
+    if(this.usuario.telefones === undefined){
+      this.usuario.telefones = new Array<Telefone>();
+    }
+
+    this.usuario.telefones.push(this.telefone);
+    this.telefone = new Telefone();
   }
 
 }

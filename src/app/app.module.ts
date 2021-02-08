@@ -14,20 +14,23 @@ import { HttpInterceptorModule } from './service/header-interceptor.service';
 import { UsuarioComponent } from './componente/usuario/usuario/usuario.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsuarioAddComponent } from './componente/usuario/usuario.add/usuario-add.component';
+import { GuardiaoGuard } from './service/guardiao.guard';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 export const appRouters: Routes = [
 
-  {path : 'home', component : HomeComponent},
+  {path : 'home', component : HomeComponent, canActivate: [GuardiaoGuard] },
   {path: 'login', component : LoginComponent},
   {path: '', component : LoginComponent},
-  {path: 'userList', component : UsuarioComponent},
-  {path: 'usuarioAdd', component: UsuarioAddComponent},
-  {path: 'usuarioAdd/:id', component: UsuarioAddComponent}
+  {path: 'userList', component : UsuarioComponent, canActivate: [GuardiaoGuard]  },
+  {path: 'usuarioAdd', component: UsuarioAddComponent, canActivate: [GuardiaoGuard]  },
+  {path: 'usuarioAdd/:id', component: UsuarioAddComponent, canActivate: [GuardiaoGuard]  }
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(appRouters);
-
+export const optionsMask: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
   declarations: [
@@ -44,7 +47,9 @@ export const routes: ModuleWithProviders = RouterModule.forRoot(appRouters);
     HttpClientModule,
     routes,
     HttpInterceptorModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxMaskModule.forRoot(),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

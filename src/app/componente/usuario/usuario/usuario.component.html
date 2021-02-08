@@ -33,14 +33,14 @@
             </th>
         </thead>
         <tbody>
-            <tr *ngFor="let teste of students">
+            <tr *ngFor="let teste of students | paginate: { itemsPerPage: 5, currentPage: p, totalItems: total }; let i  = index">
                 <td>{{ teste.id }}</td>
                 <td>{{ teste.login }}</td>
                 <td>{{ teste.nome }}</td>
                 <!--<td><button  class="btn btn-primary">Deletar</button></td> -->
                 <!-- Botão para acionar modal -->
                 <td>
-                    <button type="button" class="btn btn-primary" (click)="deleteUsuario(teste.id)" data-toggle="modal"
+                    <button type="button" class="btn btn-primary" (click)="deleteUsuario(teste.id, i)" data-toggle="modal"
                         data-target="#modalExemplo" style="width: 100%; text-align: center; vertical-align: middle">
                         Deletar
                     </button>
@@ -54,9 +54,13 @@
             </tr>
         </tbody>
     </table>
+
+    <div class="text-center">
+        <pagination-controls (pageChange)="carregarPAginacao(p = $event)" previousLabel="Voltar" nextLabel="Avançar" responsive="true" ></pagination-controls>
+    </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal para delete-->
 <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
