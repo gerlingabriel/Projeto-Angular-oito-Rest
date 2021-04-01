@@ -1,0 +1,56 @@
+<p>Tela de Relatório</p>
+
+<div style="width: 90%; align-items: center" class="container">
+  <form #formulario="ngForm">
+    <fieldset>
+      <legend>Relatória de Salários</legend>
+
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="nome">Salário Min:</label>
+          <span style="color: red; font-size: 20px" *ngIf="salario1.invalid">
+            *</span>
+          <input type="text" [(ngModel)]="paramentroSalario.salario1" #salario1="ngModel" class="form-control" name="salario1" id="salario1" currencyMask
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',',nullable: true }" required />
+        </div>
+        <div class="form-group col">
+          <label for="login">Salário Max:</label>
+          <span style="color: red; font-size: 20px" *ngIf="salario2.invalid">
+            *</span>
+          <input type="text" [(ngModel)]="paramentroSalario.salario2" #salario2="ngModel" class="form-control" name="salario2" id="salario2" currencyMask
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', nullable: true }" required />
+        </div>
+      </div>
+      <!--Fim da Primeira Linha-->
+
+      <div class="form-row">
+        <div style="width: 90%; align-items: center" class="col-sm-12 container">
+          <button type="button" class="btn btn-warning" [routerLink]="['/home']" routerLinkActive="router-link-active" style="width: 100px">
+            Voltar
+          </button>
+          <button type="button" class="btn btn-primary" (click)="novo()" style="margin-left: 10px; width: 150px">
+            Limpar campos
+          </button>
+          <button type="button" class="btn btn-primary" [disabled]="formulario.invalid" data-target="#modalPDF" data-toggle="modal" (click)="imprimiRelatorio()" style="margin-left: 10px; width: 100px">
+            Imprimir
+          </button>
+        </div>
+        <!--Fim da linha-->
+
+        <!-- Modal para Gerar PDF-->
+        <div class="modal fade" id="modalPDF" tabindex="-1" role="dialog" aria-labelledby="modalPDFModalLabel" aria-hidden="true">
+          <div class="modal-dialog" style="min-width: 90%; min-height: 90%; height: 90%;">
+            <div class="modal-content">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <iframe id="pdf2" width="100%" height="500" frameborder="0" allowtransparency="true"></iframe>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                  Fechar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Fim do Modal delete-->

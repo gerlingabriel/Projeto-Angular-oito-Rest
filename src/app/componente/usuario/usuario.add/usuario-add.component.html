@@ -4,7 +4,7 @@
   <form #formulario="ngForm">
     <fieldset>
       <legend>Cadastro de Usuário</legend>
-      
+
       <div class="form-row">
         <div class="form-group col-4">
           <input type="text" [(ngModel)]="usuario.id" class="form-control" name="id" id="id" readonly />
@@ -14,59 +14,97 @@
       <div class="form-row">
         <div class="form-group col">
           <label for="nome">Nome:</label>
-          <span style="color: red;font-size: 20px;" *ngIf="nomeValidate.invalid"> *</span>
+          <span style="color: red; font-size: 20px" *ngIf="nomeValidate.invalid">
+            *</span>
           <input type="text" [(ngModel)]="usuario.nome" #nomeValidate="ngModel" class="form-control" name="nome" id="nome" placeholder="Nome" required />
         </div>
         <div class="form-group col">
           <label for="login">Login:</label>
-          <span style="color: red;font-size: 20px;" *ngIf="loginValidate.invalid"> *</span>
+          <span style="color: red; font-size: 20px" *ngIf="loginValidate.invalid">
+            *</span>
           <input type="text" [(ngModel)]="usuario.login" #loginValidate="ngModel" class="form-control" name="login" id="login" placeholder="Login" required />
         </div>
         <div class="form-group col">
           <label for="senha">Senha:</label>
-          <span style="color: red;font-size: 20px;" *ngIf="senhaValidate.invalid"> *</span>
+          <span style="color: red; font-size: 20px" *ngIf="senhaValidate.invalid">
+            *</span>
           <input type="password" [(ngModel)]="usuario.senha" #senhaValidate="ngModel" class="form-control" name="senha" id="senha" placeholder="Senha" required />
         </div>
       </div>
+      <!--Fim da Primeira Linha-->
+
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="nome">Data de Nascimento:</label>
+          <span style="color: red; font-size: 20px" *ngIf="loginValidate.invalid">
+            *</span>
+          <div class="input-group">
+            <input type="text" [(ngModel)]="usuario.dataNascimento" id="dataNascimento" name="dataNascimento" class="form-control" placeholder="dd/MM/yyy" ngbDatepicker #dataNascimento="ngbDatepicker"
+              required />
+            <div class="input-group-append">
+              <button class="btn btn-primary" (click)="dataNascimento.toggle()" type="button"></button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="nome">Profissão:</label>
+          <span style="color: red; font-size: 20px" *ngIf="profissao.invalid">
+            *</span>
+          <select [(ngModel)]="usuario.profissao.id" id="profissao" #profissao="ngModel" name="profissao" class=" form-control" required>
+            <option [ngValue]="pro.id" *ngFor="let pro of profissoes">{{pro.descricao}}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="nome">Salário:</label>
+          <span style="color: red; font-size: 20px" *ngIf="salario.invalid">
+            *</span>
+          <input [(ngModel)]="usuario.salario" class=" form-control" currencyMask #salario="ngModel" id="salario" name="salario" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" required />
+        </div>
+      </div>
+      <!--Fim da Segunda linha-->
       <!--Fim da linha-->
 
       <div class="card text-center">
-        <div class="card-header">
-        Lista de Contatos
-        </div>
-        <div class="card-body" style="padding-left: 1px;">
-
+        <div class="card-header">Lista de Contatos</div>
+        <div class="card-body" style="padding-left: 1px">
           <div class="form-row">
             <div class="form-group col-md-3">
-              <input type="text" mask="(00) 0000-0000" class="form-control" [(ngModel)]="telefone.numeroTelefone" id="numeroTelefone" name="numeroTelefone">
+              <input type="text" mask="(00) 0000-00000" class="form-control" [(ngModel)]="telefone.numeroTelefone" id="numeroTelefone" name="numeroTelefone" />
             </div>
             <div class="form-group col-md-3">
-              <button class="btn btn-primary" (click)="addfone()">Salvar Telefone</button>
+              <button class="btn btn-primary" (click)="addfone()">
+                Salvar Telefone
+              </button>
             </div>
-
           </div>
-
         </div>
       </div>
 
       <table class="table">
         <tbody>
-
           <tr *ngFor="let fone of usuario.telefones; let i = index">
-            <td >{{fone.id}}</td>
-            <td >{{fone.numeroTelefone | mask:'(00) 00000-0000'}}</td>
-            <td > <button class="btn btn-danger" (click)="deleletarTel(fone.id, i)">Delete</button> </td>
+            <td>{{ fone.id }}</td>
+            <td>{{ fone.numeroTelefone | mask: "(00) 0000-00000" }}</td>
+            <td>
+              <button class="btn btn-danger" (click)="deleletarTel(fone.id, i)">
+                Delete
+              </button>
+            </td>
           </tr>
-
         </tbody>
       </table>
 
-
       <div class="form-row">
         <div style="width: 90%; align-items: center" class="col-sm-12 container">
-          <button type="button" class="btn btn-warning" [routerLink]="[ '/userList' ]" routerLinkActive="router-link-active" style="width: 100px;">Voltar</button>
-          <button type="button" class="btn btn-primary" (click)="novo()" style="margin-left: 10px;width: 100px">Novo</button>
-          <button type="button" class="btn btn-primary" [disabled]="formulario.invalid" (click)="salvar()" style="margin-left: 10px;width: 100px">Salvar</button>
+          <button type="button" class="btn btn-warning" [routerLink]="['/userList']" routerLinkActive="router-link-active" style="width: 100px">
+            Voltar
+          </button>
+          <button type="button" class="btn btn-primary" (click)="novo()" style="margin-left: 10px; width: 100px">
+            Novo
+          </button>
+          <button type="button" class="btn btn-primary" [disabled]="formulario.invalid" (click)="salvar()" style="margin-left: 10px; width: 100px">
+            Salvar
+          </button>
         </div>
         <!--Fim da linha-->
       </div>

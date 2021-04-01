@@ -10,11 +10,11 @@ import { UsuarioService } from "src/app/service/usuario.service";
 })
 export class UsuarioComponent implements OnInit {
   students: Array<UsuarioAngular[]>; /**Lista da tela -- Array */
-  auxIdUsuario : Number;
+  auxIdUsuario : number;
   auxIndex: number;
   nome: String;
-  p: Number;
-  total: Number;
+  p: number;
+  total: number;
   paginaDeBusca: number;
   pagina: number;
 
@@ -23,15 +23,15 @@ export class UsuarioComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioService.getUsuarios().subscribe((data) => {
-      this.students = data.content;
-      this.total = data.totalElements;
+      this.students = data.content; /**Puxa certo as paginas | sem esse não sabe puxar elementos PAGE */
+      this.total = data.totalElements; /** Saber quandotas paginas será divididas*/
       //console.log(data);
       //console.log(this.students);
       this.pagina = 1;
     });
   }
 
-  deleteUsuario(id: Number, index: number) {
+  deleteUsuario(id: number, index: number) {
     this.auxIdUsuario = id;
     this.auxIndex = index;
 
@@ -41,7 +41,7 @@ export class UsuarioComponent implements OnInit {
      * Envolver todo raciocinio
      * }
      */
-    
+
   }
 
   onConfirmando(){ /**Confirmar o comando de delete */
@@ -58,10 +58,10 @@ export class UsuarioComponent implements OnInit {
         //console.log(this.students);
       //});
     });
-    
+
   }
 
-  conultarUsuario(){
+  conultarUsuario(nome){
     if(!this.nome) { /**Tratamento em caso o cmapo da pesquisar estiver vazia */
 
       this.usuarioService.getUsuarios().subscribe((data) => {
@@ -79,8 +79,8 @@ export class UsuarioComponent implements OnInit {
       });
 
     }
-    
-    
+
+
   }
 
   carregarPAginacao(pagina){
@@ -97,6 +97,10 @@ export class UsuarioComponent implements OnInit {
         this.total = data.totalElements;
       });
     }
+  }
+
+  imprimeRelatorio(){
+    return this.usuarioService.downloadPdf();
   }
 
 

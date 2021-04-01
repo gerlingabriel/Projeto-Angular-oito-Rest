@@ -6,10 +6,12 @@ import { catchError, tap } from "rxjs/operators";
 @Injectable()
 
 export class HeaderInterceptorService implements HttpInterceptor {
-  
+
   intercept(
+
     req: import("@angular/common/http").HttpRequest<any>,
     next: import("@angular/common/http").HttpHandler
+
   ): import("rxjs").Observable<import("@angular/common/http").HttpEvent<any>> {
     if (localStorage.getItem("token") !== null) {
       const token = "Bearer " + localStorage.getItem("token");
@@ -39,9 +41,12 @@ export class HeaderInterceptorService implements HttpInterceptor {
     if(error.error instanceof  ErrorEvent){
       console.error(error.error);
       errorMessenger = "Error " + error.error.error;
+    }else if(error.status == 403){
+      errorMessenger = "Acesso Negado, faça novamente o login";
     }else {
-      errorMessenger = "Código " + error.error.code + "\nMensagem:" +  error.error.error;
+      errorMessenger = "Código " + error.error.code + "\nMensagem: " +  error.error.error;
     }
+
     window.alert(errorMessenger)
     return throwError(errorMessenger);
   }

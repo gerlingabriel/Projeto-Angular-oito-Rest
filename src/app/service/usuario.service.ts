@@ -1,3 +1,4 @@
+import { ParamentroSalario } from './../model/ParamentroSalario';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -54,11 +55,31 @@ export class UsuarioService {
   userAuthentication(){
     if(localStorage.getItem('token') != null && localStorage.getItem('token').toString != null){
       /**Verificar se está logado
-       * Só tem token quemestá logado
+       * Só tem token quem está logado
       */
      return true;
     }else {
       return false;
     }
+  }
+
+  listaProfissao(): Observable<any>{
+    return this.http.get<any>(AppConstants.baseURLProfissao);
+  }
+
+  downloadPdf(){
+    return this.http.get<any>(AppConstants.baseURL + "relatorio/", {responseType: 'text' as 'json'}).subscribe(data => {
+      document.querySelector('iframe').src = data;
+    });
+  }
+
+  downloadPdfSalario(paramentroSalario: ParamentroSalario) {
+    return this.http.post<any>(AppConstants.baseURL + "relatorio/", paramentroSalario , {responseType: 'text' as 'json'}).subscribe(data => {
+      document.querySelector('iframe').src = data;
+    });
+  }
+
+  carregarGrafico(): Observable<any>{
+    return this.http.get<any>(AppConstants.baseURL + "grafico");
   }
 }

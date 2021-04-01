@@ -2,11 +2,10 @@
 <div class="container">
     <form class="row g-3">
         <div class="col-auto">
-            <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="nome"
-                placeholder="Pesquisa por nome" />
+            <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="nome" placeholder="Pesquisa por nome" />
         </div>
         <div class="col-auto">
-            <button type="button" class="btn btn-primary mb-3" (click)="conultarUsuario()" style="width: 100px">
+            <button type="button" class="btn btn-primary mb-3" (click)="conultarUsuario(this.nome)" style="width: 100px">
                 Buscar
             </button>
         </div>
@@ -15,12 +14,17 @@
                 Novo Usuário
             </button>
         </div>
+        <div class="col-auto">
+          <button type="button" data-target="#modalPDF" data-toggle="modal" class="btn btn-primary" (click)="imprimeRelatorio()" style="width: 150px">
+            Gerar PDF
+        </button>
+        </div>
     </form>
 </div>
 <br />
 
 <div class="container">
-    <table class="table table-bordered table-hover table-sm" style="width: 90%">
+    <table class="table table-bordered table-hover table-sm" style="width: 95%">
         <thead class="thead-dark">
             <th scope="col">ID</th>
             <th scope="col">Login</th>
@@ -40,7 +44,7 @@
                 <!--<td><button  class="btn btn-primary">Deletar</button></td> -->
                 <!-- Botão para acionar modal -->
                 <td>
-                    <button type="button" class="btn btn-primary" (click)="deleteUsuario(teste.id, i)" data-toggle="modal"
+                    <button type="button" class="btn btn-danger" (click)="deleteUsuario(teste.id, i)" data-toggle="modal"
                         data-target="#modalExemplo" style="width: 100%; text-align: center; vertical-align: middle">
                         Deletar
                     </button>
@@ -81,4 +85,22 @@
             </div>
         </div>
     </div>
-</div>
+</div> <!--Fim do Modal delete-->
+
+<!-- Modal para Gerar PDF-->
+<div class="modal fade" id="modalPDF" tabindex="-1" role="dialog" aria-labelledby="modalPDFModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" style="min-width: 90%; min-height: 90%; height: 90%;">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <iframe id="pdf" width="100%" height="500" frameborder="0" allowtransparency="true"></iframe>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div> <!--Fim do Modal delete-->

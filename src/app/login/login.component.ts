@@ -19,10 +19,14 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.usuario);
   }
 
+  public recuperar(){
+    this.loginService.recuperar(this.usuario.login);
+  }
+
   ngOnInit() {
     if(localStorage.getItem('token') != null && localStorage.getItem('token').toString != null){
-      this.router.navigate(['home']); 
-      /**Quando logado não entrará na tela de login 
+      this.router.navigate(['home']);
+      /**Quando logado não entrará na tela de login
        * será encaminhando para página Home
       */
 

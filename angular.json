@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "b70ef0bf-4dcb-4e01-a8bd-f9b970ae587f"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -13,12 +16,30 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "crypto-browserify",
+              "crypto-js/lib-typedarrays",
+              "crypto-js/hmac-sha256",
+              "js-cookie",
+              "highcharts",
+              "aws-sdk",
+              "aws-sdk/clients/s3",
+              "aws-amplify",
+              "@aws-sdk/eventstream-marshaller",
+              "@aws-sdk/util-utf8-node",
+              "url",
+              "zen-observable",
+              "uuid",
+              "lodash",
+              "buffer/",
+              "chart.js"
+            ],
             "outputPath": "dist/Projeto-Angular-oito-Rest",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -46,9 +67,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
