@@ -11,7 +11,8 @@
             </button>
         </div>
         <div class="col-auto">
-            <button type="button" [routerLink]="[ '/usuarioAdd' ]" class="btn btn-success" style="width: 150px">
+            <button type="button" [routerLink]="[ '/usuarioAdd' ]" routerLinkActive="router-link-active" 
+                class="btn btn-success" style="width: 150px">
                 Novo Usuário
             </button>
         </div>
@@ -56,7 +57,7 @@
     </table>
 </div>
 
-<!-- Modal -->
+<!-- Modal | tela de deletar -->
 <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
