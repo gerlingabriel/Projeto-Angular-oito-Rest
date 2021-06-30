@@ -11,10 +11,11 @@ Para instalar Angular:
  
 OBS: "-g" instalará de maneira global / "@angular/cli" irá isntalar a versão mais nova, mas poderá controlar esse comando instalando a versão que deseja como "@angular/cli@8.3.19".
  
- # iniciando o projetpo
+ # Iniciando o projetpo
  
 Agora com as ferramentes instaladas devemos criar entrar no workspace  onde a pasta da instalação deve ficar depositada, utilizando vscode (no meu caso) devemos aplicar o seguinte comando:
   - ng new ProjetoAngularOitoRest 
+  - Depois escolher o formato CSS (básico caso do seu interesse)
  
  OBS: o nome "ProjetoAngularOitoRest" é um exemplo de nome do projeto, pode ser qualquer um que desejar.
 
@@ -34,6 +35,6 @@ Run `ng generate component component-name` para gerar um novo componente. Você 
 
 Run `ng build` inicar um novo projeto. Os artefatos de construção serão armazenados no diretório `dist /`. Use o sinalizador `--prod` para uma construção de produção.
 
-## Further help
+## Help
 
 Para obter mais ajuda sobre a CLI Angular, use `ng help` ou confira o [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
