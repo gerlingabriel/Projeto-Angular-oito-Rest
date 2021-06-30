@@ -8,12 +8,14 @@ Caso já tenha instalado você pode verificar com os comandos:
  
 Para instalar Angular:
   - npm install -g @angular/cli
-OBS: "-g" instalará de maneira global / "@angular/cli" irá isntalar a versão mais nome, mas poderá controlar esse comando instalando a versão que deseja como "@angular/cli@8.3.19".
+ 
+OBS: "-g" instalará de maneira global / "@angular/cli" irá isntalar a versão mais nova, mas poderá controlar esse comando instalando a versão que deseja como "@angular/cli@8.3.19".
  
  # iniciando o projetpo
  
 Agora com as ferramentes instaladas devemos criar entrar no workspace  onde a pasta da instalação deve ficar depositada, utilizando vscode (no meu caso) devemos aplicar o seguinte comando:
   - ng new ProjetoAngularOitoRest 
+ 
  OBS: o nome "ProjetoAngularOitoRest" é um exemplo de nome do projeto, pode ser qualquer um que desejar.
 
 # ProjetoAngularOitoRest
