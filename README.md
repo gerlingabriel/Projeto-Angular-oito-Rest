@@ -2,7 +2,7 @@
 
 Para iniciar o projeto devemos começar com seguintes passos:
   - Instalar o node (download e instalação normal)
-  - 
+
 Caso já tenha instalado você pode verificar com os comandos:
   - node --version / npm --version
  
