@@ -18,6 +18,8 @@ Agora com as ferramentes instaladas devemos criar entrar no workspace  onde a pa
   - Depois escolher o formato CSS (básico caso do seu interesse)
  
  OBS: o nome "ProjetoAngularOitoRest" é um exemplo de nome do projeto, pode ser qualquer um que desejar.
+ 
+ OBS2: Quando for usar GitHub para projetos Angular devesse ignorar a class "node_module", pois ela é muito grande, por isto quando for fazer um pull em uma outra maquina basta executar o comando "npm install" que irá instalar as depedencias utilizada nesse projeto.
 
 # ProjetoAngularOitoRest
 
